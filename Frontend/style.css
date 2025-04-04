@@ -1,0 +1,131 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#addTodo {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    margin: 20px 0;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 123, 255, 0.5);
+    transition: background-color 0.3s ease;
+}
+
+#addTodo:hover {
+    background-color: #0056b3;
+}
+
+.todo_inputs, .pop_inputs {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    width: 350px;
+}
+/* Basic styling for the todo list */
+.listTodoTask {
+    width: 300px; /* Adjust as needed */
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  
+  .todolists {
+    border: 1px solid #eee;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .todolists label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .todolists h4  {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .todolists p {
+    margin-bottom: 5px;
+  }
+  
+  .todolists span {
+    font-size: 0.8em;
+    color: #888;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .todolists button {
+    padding: 5px 10px;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+  
+  /* Styling for the input popup */
+  .pop_inputs {
+    display: none; /* Initially hidden */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    z-index: 1000; /* Ensure it's on top */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .pop_inputs input,
+  .pop_inputs textarea {
+    display: block;
+    margin-bottom: 10px;
+    width: 250px;
+    padding: 8px;
+    border: 1px solid #ddd;
+  }
+  
+  .pop_inputs button {
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Styling for the "Add Todo" button */
+  #addTodo {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* optional styling for edit and delete buttons */
+  .todolists .edit {
+    background-color: #ffc107; /* Yellow for edit */
+  }
+  
+  .todolists .delete {
+    background-color: #dc3545; /* Red for delete */
+    color: white;
+  }
