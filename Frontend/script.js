@@ -1,7 +1,6 @@
 let appendDiv = $('.listTodoTask');
 let editID;
 
-
 // GET Request
 function fetchData(){
   $.ajax({
@@ -40,35 +39,29 @@ $('#submitBtn').click(function(){
     return;
 }
 
-  let inputsValues = {Title: inputValue, Descriptions: descriptionsValue};
+let inputsValues = {Title: inputValue, Descriptions: descriptionsValue};
+
     if($('#submitBtn').text() == 'edit'){
-      $.ajax({
-        url: "http://localhost:3000/notes",
-        method: "GET",
-        success: function(response) {
-    
-        let matchedID = response.some(item => item.id ==editID)
-        if(matchedID){
-          $.ajax({
-            url: `http://localhost:3000/notes/${editID}`,
-            type: 'PUT',
-            data: {
-              Title: $('#inputTitle').val(),
-              Descriptions: $('#descriptions').val()
-            }
-          })
-        }
-       
-        $('#submitBtn').text('Submit')
-      }})
-    return;}
+      console.log($('#inputTitle').val(),$('#descriptions').val());
+     let datas = { Title: $('#inputTitle').val(), Descriptions: $('#descriptions').val()}
+     console.log(datas);
+     
+      $.get(`http://localhost:3000/notes/${editID}`,function(response){
+        $.ajax({
+          url: `http://localhost:3000/notes/${editID}`,
+          type: 'PUT',
+          data: JSON.stringify(datas),
+        })
+      })       
+        $('#submitBtn').text('Submit');editID;return
+      }
   
   $.ajax({
       url: 'http://localhost:3000/notes',
       type: 'POST',
       contentType:'application/json',
       data: JSON.stringify(inputsValues),
-      success: function(response) {
+      success: function(response) {~
           console.log('Server Response:', response);
       }
   });
@@ -91,22 +84,14 @@ appendDiv.on('click', '.delete', function(e){
 
 
 appendDiv.on('click', '.edit', function(event){
-  $.ajax({
-    url: "http://localhost:3000/notes",
-    method: "GET",
-    success: function(response) {
-      $.each(response, function(item,element){
-        if(event.target.id === element.id){
-          console.log(element)
-          editID=element.id;
-          $('#submitBtn').text('edit')
-          $(".pop_inputs").show(); 
-          $('#inputTitle').val(element.Title)
-          $('#descriptions').val(element.Descriptions)
-        }
-      }) 
-    }
-});
+  editID = event.target.id
+  
+  $.get(`http://localhost:3000/notes/${editID}`,function(response){
+        $('#submitBtn').text('edit')
+        $(".pop_inputs").show(); 
+        $('#inputTitle').val(response.Title)
+        $('#descriptions').val(response.Descriptions)
+  })
 })
 
 
@@ -117,3 +102,4 @@ $("#addTodo").click(function(){
 $('.closeIcon').click(function(){
   $(".pop_inputs").hide();
 })
+
